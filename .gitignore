@@ -8,6 +8,7 @@
 # Do not ignore current project's `.uproject`.
 !/*.uproject
 !/*.uplugin
+!/*/Resources/
 
 # Do not ignore source, config and plugins dirs.
 !/Source/**

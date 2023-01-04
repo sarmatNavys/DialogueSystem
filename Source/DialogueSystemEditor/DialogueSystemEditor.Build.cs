@@ -22,7 +22,9 @@ public class DialogueSystemEditor : ModuleRules
                 "SlateCore", 
                 "DialogueSystemPlugin",
                 "FlowEditor",
-                "UnrealEd"
+                "UnrealEd",
+                "EditorStyle",
+                "GraphEditor"
             }
         );
     }

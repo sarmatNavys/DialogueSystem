@@ -14,6 +14,13 @@ class DIALOGUESYSTEMPLUGIN_API UFlowNode_AddPhrase : public UFlowNode
 {
 	GENERATED_BODY()
 
+public:
+	FORCEINLINE FText GetPhrase() const { return Phrase; }
+	FORCEINLINE FText GetSpeakerName() const { return SpeakerName; }
+	FORCEINLINE FText GetPronounsText() const { return PronounsText; }
+	FORCEINLINE FLinearColor GetSpeakerColor() const { return SpeakerColor; }
+	FORCEINLINE FLinearColor GetPronounColor() const { return PronounColor; }
+	
 protected:
 	UFlowNode_AddPhrase();
 	
@@ -21,6 +28,18 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	FText Phrase;
+
+	UPROPERTY(EditAnywhere)
+	FText SpeakerName;
+
+	UPROPERTY(EditAnywhere)
+	FText PronounsText;
+
+	UPROPERTY(EditAnywhere)
+	FLinearColor SpeakerColor;
+
+	UPROPERTY(EditAnywhere)
+	FLinearColor PronounColor;
 
 	UPROPERTY(EditAnywhere)
 	float PhraseTime;

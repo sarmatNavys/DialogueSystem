@@ -21,7 +21,7 @@ class DIALOGUESYSTEMPLUGIN_API UDialogueSubsystem : public UGameInstanceSubsyste
 	
 public:
 	UFUNCTION(BlueprintCallable, Category = "Dialogue Subsystem")
-	void StartDialogue(class UDialogueFlowAsset* Dialogue);
+	void StartDialogue(UDialogueFlowAsset* Dialogue, APlayerController* Player);
 
 	UFUNCTION(BlueprintCallable, Category = "Dialogue Subsystem")
 	void StopDialogue();
@@ -61,6 +61,9 @@ protected:
 
 	UPROPERTY()
 	class UDialogueWidget* DialogueWidget;
+
+	UPROPERTY()
+	APlayerController* CurrentPlayerInDialogue;
 	
 	bool bIsInDialogue;
 

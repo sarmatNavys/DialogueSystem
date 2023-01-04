@@ -24,10 +24,11 @@ void UDialogueSubsystem::SetDialogueWidget(UDialogueWidget* NewDialogueWidget)
 void UDialogueSubsystem::PhraseSaid() const
 {
 	DialogueWidget->DialogueLine->SetText(FText::GetEmpty());
+	//GetWorld()->GetTimerManager().ClearTimer(PhraseTimer);
 	OnPhraseSaid.Broadcast();
 }
 
-void UDialogueSubsystem::StartDialogue(UDialogueFlowAsset* Dialogue)
+void UDialogueSubsystem::StartDialogue(UDialogueFlowAsset* Dialogue, APlayerController* Player)
 {
 	if (!Dialogue)
 	{
@@ -37,6 +38,14 @@ void UDialogueSubsystem::StartDialogue(UDialogueFlowAsset* Dialogue)
 	
 	CurrentDialogue = Dialogue;
 
+	FInputModeGameAndUI InputModeGameAndUI = FInputModeGameAndUI();
+	InputModeGameAndUI.SetWidgetToFocus(DialogueWidget->TakeWidget());
+	
+	Player->SetInputMode(InputModeGameAndUI);
+	Player->bShowMouseCursor = true;
+
+	CurrentPlayerInDialogue = Player;
+	
 	const UGameInstance* GameInstance = GetWorld()->GetGameInstance();
 	GameInstance->GetSubsystem<UFlowSubsystem>()->StartRootFlow(Dialogue, Dialogue, true);
 	OnDialogueStarted.Broadcast(Dialogue);
@@ -44,6 +53,8 @@ void UDialogueSubsystem::StartDialogue(UDialogueFlowAsset* Dialogue)
 
 void UDialogueSubsystem::StopDialogue()
 {
+	if (!CurrentPlayerInDialogue) return;
+	
 	if (!CurrentDialogue)
 	{
 		UE_LOG(LogDialogueSystemPlugin, Display, TEXT("Cannot stop null dialogue"));
@@ -52,6 +63,9 @@ void UDialogueSubsystem::StopDialogue()
 
 	DialogueWidget->DialogueLine->SetText(FText::GetEmpty());
 
+	CurrentPlayerInDialogue->SetInputMode(FInputModeGameOnly());
+	CurrentPlayerInDialogue->bShowMouseCursor = false;
+	
 	const UGameInstance* GameInstance = GetWorld()->GetGameInstance();
 	GameInstance->GetSubsystem<UFlowSubsystem>()->FinishRootFlow(CurrentDialogue, EFlowFinishPolicy::Abort);
 	OnDialogueEnded.Broadcast(CurrentDialogue);

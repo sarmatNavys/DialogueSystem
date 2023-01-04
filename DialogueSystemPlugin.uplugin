@@ -1,28 +1,35 @@
-﻿{
-  "FileVersion": 3,
-  "Version": 1,
-  "VersionName": "1.0",
-  "FriendlyName": "DialogueSystemPlugin",
-  "Description": "The plugin contains logic to build dialogues like Fallout New Vegas.",
-  "Category": "Other",
-  "CreatedBy": "Sarmat Vashaev",
-  "CreatedByURL": "",
-  "DocsURL": "",
-  "MarketplaceURL": "",
-  "CanContainContent": true,
-  "IsBetaVersion": false,
-  "IsExperimentalVersion": false,
-  "Installed": false,
-  "Modules": [
-    {
-      "Name": "DialogueSystemPlugin",
-      "Type": "Runtime",
-      "LoadingPhase": "Default"
-    },
-    {
-      "Name": "DialogueSystemEditor",
-      "Type": "Editor",
-      "LoadingPhase": "Default"
-    }
-  ]
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "DialogueSystemPlugin",
+	"Description": "The plugin contains logic to build dialogues like Fallout New Vegas.",
+	"Category": "Other",
+	"CreatedBy": "Sarmat Vashaev",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "DialogueSystemPlugin",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "DialogueSystemEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	],
+	"SupportURL": "",
+	"Plugins": [
+		{
+			"Name": "Flow",
+			"Enabled": true
+		}
+	]
 }
